@@ -6,9 +6,9 @@ cd $ANDROID_ROOT
 sed -i 's/external\/selinux/external\/selinux external\/libcurl/g' build/core/main.mk
 
 source build/envsetup.sh
-export USE_CCACHE=1
+export LC_ALL=C && export USE_NINJA=false && export USE_CCACHE=1 && export ALLOW_MISSING_DEPENDENCIES=true
 breakfast $DEVICE
-make -j$(nproc) hybris-hal
+#make -j$(nproc) hybris-hal
 make -j$(nproc) halium-boot
 make -j$(nproc) systemimage 
 

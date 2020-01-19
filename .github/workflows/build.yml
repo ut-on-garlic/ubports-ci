@@ -5,7 +5,7 @@
 # Credit: https://github.com/P3TERX/Actions-OpenWrt
 #=================================================
 
-name: Build Ubports
+name: Build System Image for Ubports
 
 on: 
   release:
@@ -14,7 +14,7 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -38,8 +38,8 @@ jobs:
         mkdir -p ~/bin
         wget 'https://storage.googleapis.com/git-repo-downloads/repo' -P ~/bin
         chmod +x ~/bin/repo
-        git config --global user.name "BirdZhang"
-        git config --global user.email "0312birdzhang@gmail.com"
+        git config --global user.name "pbteja100"
+        git config --global user.email "pbteja100@gmail.com"
         source halium.env
         echo "::set-env name=VENDOR::$(echo $VENDOR)"
         echo "::set-env name=DEVICE::$(echo $DEVICE)"
@@ -56,15 +56,10 @@ jobs:
     - name: Clone device spec source
       run: |
         source halium.env
-        git clone https://github.com/ubports-on-vince/device_xiaomi_vince.git $ANDROID_ROOT/device/xiaomi/vince --depth=1
-        git clone https://github.com/ubports-on-vince/vendor_xiaomi_vince.git $ANDROID_ROOT/vendor/xiaomi/vince --depth=1
-        git clone https://github.com/ubports-on-vince/Xiaomi_Kernel_OpenSource.git -b tiffany-n-oss $ANDROID_ROOT/kernel/xiaomi/msm8953 --depth=1
-        rm -rf $ANDROID_ROOT/halium/hybris-boot
-        git clone https://github.com/Sailfish-On-Vince/hybris-boot.git $ANDROID_ROOT/halium/hybris-boot
-        git clone --recurse-submodules https://github.com/Sailfish-On-Vince/droid-hal-vince.git $ANDROID_ROOT/rpm
+        git clone https://github.com/ut-on-garlic/android_device_yu_garlic.git $ANDROID_ROOT/device/yu/garlic --depth=1
+        git clone https://github.com/ut-on-garlic/proprietary_vendor_yu.git $ANDROID_ROOT/vendor/yu --depth=1
+        git clone https://github.com/ut-on-garlic/android_kernel_yu_msm8937.git $ANDROID_ROOT/kernel/yu/msm8937 --depth=1
         git clone https://android.googlesource.com/platform/external/curl.git -b android-7.1.2_r37 $ANDROID_ROOT/external/libcurl --depth=1
-        rm -rf $ANDROID_ROOT/halium/halium-boot
-        git clone https://github.com/ubports-on-vince/halium-boot.git $ANDROID_ROOT/halium/halium-boot
 
     - name: Build HAL
       run: |
