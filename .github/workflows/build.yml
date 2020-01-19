@@ -8,6 +8,9 @@
 name: Build System Image for Ubports
 
 on: 
+  push:
+    branches:
+      - master
   release:
     types: [published]
 
