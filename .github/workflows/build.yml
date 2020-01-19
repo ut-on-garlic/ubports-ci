@@ -17,7 +17,7 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-16.04
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -55,6 +55,8 @@ jobs:
         cd $ANDROID_ROOT
         repo init -u https://github.com/Halium/android -b halium-7.1 --depth=1
         repo sync -j8 -c --no-clone-bundle --no-tags
+        cd $ANDROID_ROOT/halium/droidmedia
+        git fetch https://github.com/peat-psuwit/droidmedia fix-raw-data && git cherry-pick FETCH_HEAD
     
     - name: Clone device spec source
       run: |
