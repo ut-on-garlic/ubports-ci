@@ -49,10 +49,10 @@ jobs:
         source halium.env
         export FLASHABLE_DIR=ubports-`date +%Y%m%d-%H%M%S`-devel-$DEVICE
         echo $FLASHABLE_DIR > ~/.current_version
-        echo "::set-env name=VENDOR::$(echo $VENDOR)"
-        echo "::set-env name=DEVICE::$(echo $DEVICE)"
-        echo "::set-env name=ANDROID_ROOT::$(echo $ANDROID_ROOT)"
-        echo "::set-env name=FLASHABLE_DIR::$(echo $FLASHABLE_DIR)"
+        echo "VENDOR=$(echo $VENDOR)" >> $GITHUB_ENV
+        echo "DEVICE=$(echo $DEVICE)" >> $GITHUB_ENV
+        echo "ANDROID_ROOT=$(echo $ANDROID_ROOT)" >> $GITHUB_ENV
+        echo "FLASHABLE_DIR=$(echo $FLASHABLE_DIR)" >> $GITHUB_ENV
 
     - name: Downloading source code
       run: |
@@ -105,4 +105,4 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
         asset_path: /home/runner/work/${{env.FLASHABLE_DIR}}.zip
         asset_name: ${{env.FLASHABLE_DIR}}.zip
-        asset_content_type: application/zip        
+        asset_content_type: application/zip
