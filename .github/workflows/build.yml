@@ -9,10 +9,6 @@ name: Build System Image for Ubports
 
 on: 
   push:
-    branches:
-      - master
-  release:
-    types: [published]
     tags:
     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
