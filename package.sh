@@ -44,10 +44,11 @@ function makeFlashableZip(){
     cp -R $LOCAL_WORKDIR/ubports-ci/ubports-ci/META-INF $zipfolder/
     chmod +x $zipfolder/META-INF/com/google/android/updat*
     cp $ANDROID_ROOT/out/target/product/$DEVICE/halium-boot.img $zipfolder/
+    cp $ANDROID_ROOT/out/target/product/$DEVICE/hybris-boot.img $zipfolder/
     cd $zipfolder
     gzip rootfs.img
     gzip system.img
-    zip -r $LOCAL_WORKDIR/$zipfolder.zip halium-boot.img rootfs.img.gz system.img.gz META-INF
+    zip -r $LOCAL_WORKDIR/$zipfolder.zip halium-boot.img hybris-boot.img rootfs.img.gz system.img.gz META-INF
 }
 
 
