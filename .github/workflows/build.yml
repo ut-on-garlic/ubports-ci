@@ -102,16 +102,20 @@ jobs:
         asset_name: ${{env.FLASHABLE_DIR}}.zip
         asset_content_type: application/zip
         
-        asset_path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/halium-boot.img
+    - name : Upload halium boot image
+      uses: actions/upload-artifact@master
+      with:
+        name: halium-boot image
+        path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/halium-boot.img
 
-        asset_name: halium-boot.img
-        asset_content_type: application/zip
-        
-        asset_path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/hybris-boot.img
+    - name : Upload hybris boot image
+      uses: actions/upload-artifact@master
+      with:
+        name: halium-boot image
+        path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/hybris-boot.img
 
-        asset_name: hybris-boot,img
-        asset_content_type: application/zip
-        
-        asset_path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/system.img
-        asset_name: system.img
-        asset_content_type: application/zip
+    - name : Upload system image
+      uses: actions/upload-artifact@master
+      with:
+        name: System image
+        path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/system.img
