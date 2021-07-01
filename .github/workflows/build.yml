@@ -101,21 +101,36 @@ jobs:
         asset_path: /home/runner/work/${{env.FLASHABLE_DIR}}.zip
         asset_name: ${{env.FLASHABLE_DIR}}.zip
         asset_content_type: application/zip
-        
-    - name : Upload halium boot image
-      uses: actions/upload-artifact@master
-      with:
-        name: halium-boot image
-        path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/halium-boot.img
 
-    - name : Upload hybris boot image
-      uses: actions/upload-artifact@master
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.MySecret }}
       with:
-        name: halium-boot image
-        path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/hybris-boot.img
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/halium-boot.img
+        asset_name: halium_boot
+        asset_content_type: application/zip
 
-    - name : Upload system image
-      uses: actions/upload-artifact@master
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.MySecret }}
       with:
-        name: System image
-        path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/system.img
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/hybris-boot.img
+        asset_name: hybris_boot
+        asset_content_type: application/zip
+
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.MySecret }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/system.img
+        asset_name: system_image
+        asset_content_type: application/zip
