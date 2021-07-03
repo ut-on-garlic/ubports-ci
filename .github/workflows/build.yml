@@ -79,6 +79,9 @@ jobs:
         bash -x package.sh
       shell: bash
 
+    - name: Make zips
+      run: |
+        zip -r ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/system-image.zip ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/system.img
 
     - name: Create Release
       id: create_release
@@ -109,8 +112,8 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
         asset_path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/halium-boot.img
-        asset_name: halium_boot
-        asset_content_type: application/zip
+        asset_name: halium-boot.img
+        asset_content_type: application/octet-stream
 
     - name: Upload Hybris-boot
       uses: actions/upload-release-asset@v1
@@ -119,8 +122,8 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
         asset_path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/hybris-boot.img
-        asset_name: hybris_boot
-        asset_content_type: application/zip
+        asset_name: hybris-boot.img
+        asset_content_type: application/octet-stream
 
     - name: Upload System-image
       uses: actions/upload-release-asset@v1
@@ -128,6 +131,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.MySecret }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/system.img
-        asset_name: system_image
+        asset_path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/system-image.zip
+        asset_name: system-image.zip
         asset_content_type: application/zip
