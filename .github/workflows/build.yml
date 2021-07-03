@@ -81,7 +81,8 @@ jobs:
 
     - name: Make zips
       run: |
-        zip -r ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/system-image.zip ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/system.img
+        cd ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}} 
+        zip -r system-image.zip system.img
 
     - name: Create Release
       id: create_release
