@@ -62,7 +62,7 @@ jobs:
     - name: Clone device spec source
       run: |
         source halium.env
-        git clone https://github.com/ut-on-garlic/android_device_yu_garlic.git -b halium-7.1-ubportsnew $ANDROID_ROOT/device/yu/garlic --depth=1
+        git clone https://github.com/ut-on-garlic/android_device_yu_garlic.git -b halium-7.1-ubports $ANDROID_ROOT/device/yu/garlic --depth=1
         git clone https://github.com/ut-on-garlic/proprietary_vendor_yu.git $ANDROID_ROOT/vendor/yu --depth=1
         git clone https://github.com/ut-on-garlic/android_kernel_yu_msm8937.git $ANDROID_ROOT/kernel/yu/msm8937 --depth=1
         git clone https://android.googlesource.com/platform/external/curl.git -b android-7.1.2_r37 $ANDROID_ROOT/external/libcurl --depth=1
