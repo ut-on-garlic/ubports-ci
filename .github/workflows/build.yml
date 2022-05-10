@@ -39,8 +39,8 @@ jobs:
         mkdir -p ~/bin
         wget 'https://storage.googleapis.com/git-repo-downloads/repo' -P ~/bin
         chmod +x ~/bin/repo
-        git config --global user.name "pbteja100"
-        git config --global user.email "pbteja100@gmail.com"
+        git config --global user.name "AKhilRaghav0"
+        git config --global user.email "rghv064@gmail.com"
         source halium.env
         export FLASHABLE_DIR=ubports-`date +%Y%m%d-%H%M%S`-devel-$DEVICE
         echo $FLASHABLE_DIR > ~/.current_version
