@@ -10,12 +10,12 @@ name: Build System Image for Ubports
 on: 
   push:
     tags:
-        pull_request:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+  pull_request:
     branches:
       - main
-        workflow_dispatch:
-    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
-
+        
+   
 jobs:
 
   build:
