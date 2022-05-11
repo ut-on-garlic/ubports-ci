@@ -89,7 +89,7 @@ jobs:
       id: create_release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.MySecret }}
+        GITHUB_TOKEN: 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
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
