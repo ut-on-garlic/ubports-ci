@@ -100,7 +100,7 @@ jobs:
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.MySecret }}
+        GITHUB_TOKEN: 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
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
         asset_path: /home/runner/work/${{env.FLASHABLE_DIR}}.zip
@@ -110,7 +110,7 @@ jobs:
     - name: Upload Halium-boot
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.MySecret }}
+        GITHUB_TOKEN: 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
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
         asset_path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/halium-boot.img
@@ -120,7 +120,7 @@ jobs:
     - name: Upload Hybris-boot
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.MySecret }}
+        GITHUB_TOKEN: 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
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
         asset_path: ${{env.ANDROID_ROOT}}/out/target/product/${{env.DEVICE}}/hybris-boot.img
